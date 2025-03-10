@@ -20,20 +20,63 @@ public class Biblioteca {
         this.scanner = new Scanner(System.in);
     }
 
+
     // Cadastrar um novo livro
     public void cadastrarLivro(Livro livro) {
         livros.add(livro);
         System.out.println(" Livro cadastrado com sucesso: " + livro.getTitulo());
     }
 
+    public void excluirLivro(String id) {
+        Livro livro = buscarLivro(id);
+        if (livro != null) {
+            if (livro.isDisponivel()) {
+                livros.remove(livro);
+                System.out.println(" Livro removido com sucesso!");
+            } else {
+                System.out.println(" O livro está emprestado e não pode ser removido!");
+            }
+        } else {
+            System.out.println(" Livro não encontrado.");
+        }
+    }
+
     public boolean verificarLivroExiste(String id) {
         return buscarLivro(id) != null;
     }
+
+
 
     // Cadastrar um novo usuário
     public void cadastrarUsuario(Usuario usuario) {
         usuarios.add(usuario);
         System.out.println(" Usuário cadastrado com sucesso: " + usuario.getNome());
+    }
+
+    // Verifica se um usuário possui empréstimos ativos
+    private boolean possuiEmprestimosAtivos(Usuario usuario) {
+        for (Emprestimo e : emprestimos) {
+            if (e.getUsuario().equals(usuario)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    // Remover um usuário pelo ID
+    public void excluirUsuario(String id) {
+        Usuario usuario = buscarUsuario(id);
+        if (usuario != null) {
+            if (possuiEmprestimosAtivos(usuario)) {
+                System.out.println(" O usuário possui empréstimos ativos e não pode ser removido!");
+            } else {
+                usuarios.remove(usuario);
+                System.out.println(" Usuário removido com sucesso!");
+            }
+        } else {
+            System.out.println(" Usuário não encontrado.");
+        }
     }
 
     public boolean verificarUsuarioExiste(String id) {
