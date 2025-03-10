@@ -10,6 +10,7 @@ Este é um sistema de gerenciamento de biblioteca desenvolvido em **Java**, util
 - 📌 **Devolver Livros**
 - 📌 **Listar Livros Disponíveis**
 - 📌 **Menu Interativo no Console**
+- - 📌 **Excluir Livro e Usuario**
 - 📌 **Tratamento de Erros na Entrada de Dados**
 
 ## Tecnologias Utilizadas
