@@ -27,6 +27,8 @@ public class Main {
             System.out.println("5 - Listar Livros Disponíveis");
             System.out.println("6️ - Listar Usuários Cadastrados");
             System.out.println("7️ - Listar Todos os Livros");
+            System.out.println("8 - Excluir Usuário");
+            System.out.println("9️ - Excluir Livro");
             System.out.println("0️ - Sair\n");
             System.out.print("Escolha uma opção: ");
 
@@ -41,6 +43,8 @@ public class Main {
                 case 5 -> biblioteca.listarLivrosDisponiveis();
                 case 6 -> listarUsuarios();
                 case 7 -> listarTodosOsLivros();
+                case 8 -> excluirUsuario();
+                case 9 -> excluirLivro();
                 case 0 -> System.out.println(" Encerrando o sistema...");
                 default -> System.out.println(" Opção inválida! Tente novamente.");
             }
@@ -66,8 +70,15 @@ public class Main {
         biblioteca.cadastrarLivro(livro);
     }
 
+    // Excluir um livro
+    private static void excluirLivro() {
+        System.out.print(" ID do Livro a ser excluído: ");
+        String id = scanner.nextLine();
+        biblioteca.excluirLivro(id);
+    }
+
     private static void cadastrarUsuario() {
-        System.out.print("👤 ID do Usuário: ");
+        System.out.print(" ID do Usuário: ");
         String id = scanner.nextLine();
         if (biblioteca.verificarUsuarioExiste(id)) {
             System.out.println(" Erro: Já existe um usuário cadastrado com esse ID!");
@@ -90,6 +101,14 @@ public class Main {
 
         biblioteca.cadastrarUsuario(usuario);
     }
+
+    // Excluir um usuário
+    private static void excluirUsuario() {
+        System.out.print(" ID do Usuário a ser excluído: ");
+        String id = scanner.nextLine();
+        biblioteca.excluirUsuario(id);
+    }
+
 
     private static void emprestarLivro() {
         System.out.print(" ID do Usuário: ");
